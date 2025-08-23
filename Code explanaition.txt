@@ -1,0 +1,470 @@
+<!-- =============================== -->
+<!-- index.html (with explanations) -->
+<!-- =============================== -->
+
+<!DOCTYPE html> <!-- Defines document as HTML5 -->
+<html lang="en"> <!-- Root element of the HTML page, English language -->
+<head>
+  <meta charset="UTF-8"> <!-- Character encoding (UTF-8 handles all characters) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Makes layout responsive -->
+
+  <!-- Website favicon (small icon in browser tab) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
+
+  <!-- Load Google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Preload font connection -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Bellefair&family=Barlow:wght@400;700&display=swap"
+      rel="stylesheet"> <!-- Imports fonts -->
+
+  <!-- Custom CSS file -->
+  <link rel="stylesheet" href="index.css">
+
+  <!-- Title in browser tab -->
+  <title>Frontend Mentor | Space tourism website</title>
+
+  <!-- JavaScript file (defer = runs after HTML loads) -->
+  <script src="index.js" defer></script>
+</head>
+
+<body class="home"> <!-- "home" sets background image -->
+  <!-- Skip link: accessibility for keyboard users -->
+  <a class="skip-to-content" href="#main">Skip to content</a>
+
+  <!-- Header / Navigation -->
+  <header class="primary-header flex"> <!-- Flexbox container -->
+    <div>
+      <!-- Website logo -->
+      <img src="./assets/shared/logo.svg" alt="space tourism logo" class="logo">
+    </div>
+
+    <!-- Mobile menu toggle (hamburger button) -->
+    <button class="mobile-nav-toggle" aria-controls="primary-navigation">
+      <!-- Screen reader text -->
+      <span class="sr-only" aria-expanded="false">Menu</span>
+    </button>
+
+    <!-- Navigation links -->
+    <nav>
+        <ul id="primary-navigation" data-visible="false" class="primary-navigation underline-indicators flex">
+            <!-- "active" = current page -->
+            <li class="active"><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="index.html"><span aria-hidden="true">00</span>Home</a>
+            <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="destination.html"><span aria-hidden="true">01</span>Destination</a>
+            <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="crew.html"><span aria-hidden="true">02</span>Crew</a>
+            <li><a class="ff-sans-cond uppercase text-white letter-spacing-2" href="technology.html"><span aria-hidden="true">03</span>Technology</a>
+        </ul>
+    </nav>
+  </header>
+  
+  <!-- Main content -->
+  <main id="main" class="grid-container grid-container--home">
+    <div>
+      <!-- Headline with two font styles -->
+      <h1 class="text-accent fs-500 ff-sans-cond uppercase letter-spacing-1">
+        So, you want to travel to
+        <span class="d-block fs-900 ff-serif text-white">Space</span>
+      </h1>
+      
+      <!-- Intro text -->
+      <p>
+        Let’s face it; if you want to go to space, you might as well genuinely go to 
+        outer space and not hover kind of on the edge of it. Well sit back, and relax 
+        because we’ll give you a truly out of this world experience!
+      </p>
+    </div>
+
+    <!-- Big circular button -->
+    <div>
+      <a href="#" class="large-button uppercase ff-serif text-dark bg-white">Explore</a>
+    </div>
+  </main>
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------------
+
+/* ------------------- */
+/* Reset section       */
+/* ------------------- */
+
+/* Apply border-box so width includes padding + border */
+*, *::before, *::after {
+  box-sizing: border-box; /* Prevents unexpected size growth */
+}
+
+/* Remove default margin on body and text elements */
+body, h1, h2, h3, h4, h5, p, figure, picture {
+  margin: 0; /* We’ll control spacing manually */
+}
+
+/* Remove default list styles (bullets/numbers) */
+ul, ol {
+  list-style: none; /* Cleaner lists, style later if needed */
+  padding: 0;       /* Remove default left padding */
+}
+
+/* Reset link styles */
+a {
+  text-decoration: none; /* Remove underline */
+  color: inherit;        /* Inherit parent text color */
+}
+
+/* ------------------- */
+/* Base styles         */
+/* ------------------- */
+
+/* Set font + background for the entire page */
+body {
+  line-height: 1.5;         /* Makes text easier to read */
+  font-family: sans-serif;  /* Clean, default sans-serif font */
+  background-color: #0b0d17;/* Dark background color */
+  color: #fff;              /* White text color */
+  min-height: 100vh;        /* Fill full viewport height */
+  display: flex;            /* Allows flexbox layout */
+  flex-direction: column;   /* Stack children vertically */
+}
+
+/* ------------------- */
+/* Header (top nav)    */
+/* ------------------- */
+
+/* Style for the page header */
+header {
+  display: flex;             /* Arrange logo + nav horizontally */
+  justify-content: space-between; /* Push logo left, nav right */
+  align-items: center;       /* Align items vertically */
+  padding: 1rem 2rem;        /* Space inside header */
+  background: rgba(0,0,0,0.4);/* Transparent dark background */
+}
+
+/* Logo image */
+header img {
+  height: 40px; /* Fixed logo height */
+}
+
+/* Navigation menu (inside header) */
+nav ul {
+  display: flex;  /* Arrange nav items horizontally */
+  gap: 1.5rem;    /* Space between each link */
+}
+
+/* Nav links */
+nav a {
+  color: #fff;        /* White text */
+  text-transform: uppercase; /* Make text all caps */
+  letter-spacing: 2px;/* Wider spacing for modern look */
+  font-size: 0.9rem;  /* Slightly smaller text */
+  transition: 0.3s;   /* Smooth hover effect */
+}
+
+/* Nav hover effect */
+nav a:hover {
+  color: #d0d6f9; /* Light blue on hover */
+}
+
+/* ------------------- */
+/* Main content        */
+/* ------------------- */
+
+/* Main section container */
+main {
+  flex: 1;                 /* Take up remaining space */
+  display: flex;           /* Flexbox layout */
+  flex-direction: column;  /* Stack content vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center;     /* Center horizontally */
+  text-align: center;      /* Center text */
+  padding: 2rem;           /* Add space inside */
+}
+
+/* Headline text */
+h1 {
+  font-size: 3rem;     /* Large font */
+  margin-bottom: 1rem; /* Space below headline */
+  font-family: "Bellefair", serif; /* Fancy font */
+}
+
+/* Paragraph text */
+p {
+  max-width: 600px;  /* Limit line length */
+  color: #d0d6f9;    /* Light blue-grey color */
+  font-size: 1.1rem; /* Slightly bigger than default */
+}
+
+/* ------------------- */
+/* Button              */
+/* ------------------- */
+
+/* Call-to-action button */
+button {
+  margin-top: 2rem;          /* Space above button */
+  padding: 1rem 2rem;        /* Inner space (y x) */
+  border: none;              /* Remove default border */
+  border-radius: 50px;       /* Rounded pill shape */
+  background-color: #fff;    /* White background */
+  color: #0b0d17;            /* Dark text */
+  font-size: 1rem;           /* Normal font size */
+  font-weight: bold;         /* Make text bold */
+  cursor: pointer;           /* Show pointer on hover */
+  transition: 0.3s ease-in;  /* Smooth hover animation */
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #d0d6f9; /* Light blue on hover */
+}
+
+/* ------------------- */
+/* Footer              */
+/* ------------------- */
+
+/* Page footer */
+footer {
+  text-align: center;     /* Center text */
+  padding: 1rem;          /* Space inside footer */
+  font-size: 0.8rem;      /* Smaller text */
+  color: #d0d6f9;         /* Light blue-grey text */
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+<!-- =============================== -->
+<!-- index.js (with explanations) -->
+<!-- =============================== -->
+
+
+// Select navigation menu and toggle button
+const nav = document.querySelector(".primary-navigation");
+const navToggle = document.querySelector(".mobile-nav-toggle");
+
+// Add click event on the button
+navToggle.addEventListener("click", () => {
+    // Get current visibility state (true/false)
+    const visiblity = nav.getAttribute("data-visible");
+
+    // If menu hidden -> show it
+    if (visiblity === "false") {
+        nav.setAttribute("data-visible", true); // show nav
+        navToggle.setAttribute("aria-expanded", true); // accessibility: "menu expanded"
+    } 
+    // If menu visible -> hide it
+    else {
+        nav.setAttribute("data-visible", false); // hide nav
+        navToggle.setAttribute("aria-expanded", false);
+    }
+})
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Flexbox vs Box Model (One-Page Guide)
+🔹 CSS Box Model (applies to one element)
+
+Each element is a box with 4 parts:
+
++-----------------------+  ← border (line around element)
+|       PADDING         |  ← space inside, around content
+|   +---------------+   |
+|   |   CONTENT     |   |  ← text, image, etc.
+|   +---------------+   |
+|                       |
++-----------------------+
+( then outside → margin )
+
+
+Content → The text/image inside.
+
+Padding → Space between content and border (inside box).
+
+Border → The line around the element.
+
+Margin → Space outside the element (between it and neighbors).
+
+👉 Margin/padding/border only affect that element’s own size & spacing.
+
+🔹 Flexbox (applies to a parent and its children)
+
+Turns a container into a flex container:
+
+.container {
+  display: flex;          /* enable flexbox */
+  flex-direction: row;    /* main axis = horizontal (default) */
+  justify-content: center;/* align children along main axis */
+  align-items: center;    /* align children along cross axis */
+}
+
+
+Main axis = direction items flow (row = left↔right, column = top↕down).
+
+Cross axis = perpendicular direction.
+
+👉 Flexbox controls how multiple boxes are arranged inside a parent.
+
+🔹 Example (Nav with Buttons)
+<div class="nav">
+  <button>Home</button>
+  <button>About</button>
+  <button>Contact</button>
+</div>
+
+.nav {
+  display: flex;
+  justify-content: center;   /* center row horizontally */
+  align-items: center;       /* center row vertically */
+  background: lightgray;
+  height: 100px;
+}
+
+button {
+  margin: 10px;              /* space outside button */
+  padding: 10px 20px;        /* space inside button */
+  border: 2px solid black;   /* line around button */
+}
+
+
+👉 Results:
+
+Flexbox → puts buttons in a row, centered.
+
+Margin → adds space between buttons.
+
+Padding → makes button bigger inside.
+
+Border → draws the outline.
+
+🔹 Super-Simple Memory Rule
+
+Margin → space outside the box.
+
+Padding → space inside the box.
+
+Border → line around the box.
+
+Flexbox → arrangement of boxes inside a parent.
+
+
+When you use flexbox, you always have two axes:
+
+Main axis → the direction your flex items are laid out in.
+
+If flex-direction: row; → main axis is horizontal (left ↔ right).
+
+If flex-direction: column; → main axis is vertical (top ↔ bottom).
+
+Cross axis → the perpendicular axis to the main one.
+
+If main axis is horizontal → cross axis is vertical.
+
+If main axis is vertical → cross axis is horizontal.
+
+
+::before and ::after are CSS pseudo-elements. They allow you to insert extra "virtual" elements before or after the content of an element — without writing extra HTML.
+
+::before → Inserts content inside the element, before its actual content.
+Example: Add a star before a button label.
+
+::after → Inserts content inside the element, after its actual content.
+Example: Add an arrow after a link.
+
+content property is required.
+Without content, nothing shows up (even if you style it with color, background, etc.).
+
+They are often used for:
+
+Adding icons (✔, →, ✨)
+
+Decorative effects (borders, shapes, underlines)
+
+Clearfix hack in Flexbox/Float layouts
+
+Example
+------
+button::before {
+  content: "★ ";
+  color: gold;
+}
+
+button::after {
+  content: " →";
+  color: green;
+}
+
+<button>Click Me</button>
+
+
+Will render as:
+★ Click Me →
+
+
+✅ 1. Add Decoration Without Extra HTML
+
+You don’t need to add extra <span> or <div> in your HTML.
+
+Keeps HTML clean (structure) and leaves styling to CSS.
+
+Example:
+
+h1::after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: gold;
+  margin-top: 10px;
+}
+
+
+👉 Creates a line under every <h1> without writing <hr> in HTML.
+
+✅ 2. Icons & Symbols
+
+Quickly add symbols before/after text (arrows, stars, quotes, etc.).
+
+a::after {
+  content: " ↗";  /* show arrow for external links */
+}
+
+✅ 3. Quotes or Labels
+
+Used in blockquotes, tooltips, or badges.
+
+blockquote::before {
+  content: "“";   /* open quote */
+  font-size: 2rem;
+}
+blockquote::after {
+  content: "”";   /* close quote */
+  font-size: 2rem;
+}
+
+✅ 4. Pure CSS Shapes / Effects
+
+Combine with position, background, and transform to draw arrows, overlays, highlights, etc.
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+
+👉 That creates the small arrow under a tooltip bubble.
+
+✅ 5. The “Clearfix” Hack (old but famous)
+
+When using floats before Flexbox/Grid, developers used:
+
+.container::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+
+👉 Prevents parent from collapsing when its children are floated.
+
+⚡ In short:
+We usually use ::before & ::after to add extra design elements without touching HTML, keeping code clean and styles flexible.
