@@ -5,7 +5,7 @@
 :root {
     /* colors */
     --clr-dark: 230 35% 7%;
-    --clr-light: 231 77% 90%;
+    --clr-light: 123 77% 90%;
     --clr-white: 0 0% 100%;
     
     /* font-sizes */
@@ -651,125 +651,126 @@ body {
     
     .grid-container--crew > picture {
         grid-column: span 2;
-        align-self: end;
+        align-self: end; 
         max-width: 90%;
     }
 
 }
+/* technology*/
+/* ------------------- */
+/* Technology Layout   */
+/* ------------------- */
 
-/* === Technology Page Base Styles === */
-.technology-page {
-  padding: 2rem 1rem;
-  text-align: center;
-  color: white;
-  background-color: #0b0d17;
-  position: relative;
-  z-index: 0;
+.grid-container--technology {
+  --flow-space: 2rem;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
 }
 
-/* === Tablist (Circular Buttons) === */
+.grid-container--technology > .numbered-title { grid-area: title; }
+.grid-container--technology > .tech-image      { grid-area: image; }
+.grid-container--technology > .number-indicators { grid-area: tabs; }
+.grid-container--technology > .tech-details    { grid-area: content; }
+
+.grid-container--technology > .tech-image {
+  width: 100%;
+  max-width: 28rem;
+  justify-self: center;
+}
+
+/* Technology background */
+.technology {
+  background-image: url(./assets/technology/background-technology-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .technology {
+    background-position: center center;
+    background-image: url(./assets/technology/background-technology-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .technology {
+    background-image: url(./assets/technology/background-technology-desktop.jpg);
+  }
+}
+
+/* Numbered indicators (1 • 2 • 3) */
 .number-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  z-index: 2;
-  position: relative;
-}
-
-.number-indicators [role="tab"] {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 1px solid white;
-  background: transparent;
-  color: white;
-  font-size: 2rem;
-  font-family: var(--ff-serif);
-  cursor: pointer;
-  display: flex;
+  --gap: 1rem;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease, color 0.3s ease;
-  aspect-ratio: 1 / 1;
 }
 
-.number-indicators [aria-selected="true"] {
-  background-color: white;
-  color: #0b0d17;
-}
-
-/* === Tab Panels === */
-[role="tabpanel"] {
-  display: block;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-[role="tabpanel"][hidden] {
-  display: none;
-}
-
-/* === Responsive Images === */
-picture {
-  display: block;
-  margin: 2rem auto;
-  max-width: 100%;
- 
-  z-index: 1;
-  position: relative;
-}
-
-picture[hidden] {
-  display: none;
-}
-
-/* === Typography === */
-.technology-page h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-}
-
-.technology-page p {
+.number-indicators > button {
+  width: 2.75rem;            /* mobile size */
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid hsl(var(--clr-white) / .25);
+  background: transparent;
+  color: hsl(var(--clr-white));
+  font-family: var(--ff-serif);
   font-size: 1rem;
-  line-height: 1.6;
-  max-width: 500px;
-  margin: 0 auto;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
 }
 
-/* === Tablet & Desktop === */
-@media (min-width: 768px) {
-  .technology-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
+.number-indicators > button:hover,
+.number-indicators > button:focus {
+  border-color: hsl(var(--clr-white) / .6);
+  outline: none;
+}
+
+.number-indicators > button[aria-selected="true"] {
+  background: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+  border-color: hsl(var(--clr-white));
+}
+
+@media (min-width: 45em) {
+  .number-indicators > button { 
+    width: 3.25rem; 
+    font-size: 1.125rem; 
+  }
+}
+
+/* ------------------- */
+/* Desktop updates     */
+/* ------------------- */
+@media (min-width: 45em) {
+  .grid-container--technology {
+    grid-template-columns: minmax(1rem, 1fr) minmax(5rem, 6rem) minmax(0, 32rem) minmax(0, 28rem) minmax(1rem, 1fr);
+    grid-template-areas:
+      ". title    title   image ."
+      ". tabs     content image ."
+      ". tabs     content image .";
+    column-gap: 3rem;
+    justify-items: start;
     align-items: center;
-    justify-content: center;
-    text-align: left;
   }
 
+  /* stack the number buttons vertically on the left */
   .number-indicators {
     flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 0;
-    margin-top: 2rem;
+    gap: 2rem;
+    justify-self: center;
   }
 
-  .technology-page h2 {
-    font-size: 2rem;
+  /* ensure text sits beside buttons */
+  .tech-details {
+    align-self: center;
   }
 
-  .number-indicators [role="tab"] {
-    width: 60px;
-    height: 60px;
-    font-size: 1.2rem;
+  /* move the image to the far right */
+  .grid-container--technology > .tech-image {
+    justify-self: end;
   }
-
-  picture img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
-  }
-  
 }
+
+
